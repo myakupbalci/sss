@@ -15,18 +15,23 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle 8.7
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.7'
-          cache-disabled: true
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
+      # Eksik olan gradlew wrapper dosyasını otomatik oluşturur
+      - name: Generate Gradle Wrapper
+        run: |
+          gradle wrapper --gradle-version 8.7
+          chmod +x gradlew
+
+      # Eksik olan debug keystore dosyasını oluşturur
       - name: Generate debug keystore
         run: |
           keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
 
+      # Doğrudan üretilen wrapper üzerinden derleme yapar
       - name: Build with Gradle
-        run: gradle assembleDebug --no-daemon --stacktrace
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
