@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path
+        name="pdf_reports_cache"
+        path="reports/" />
+    <files-path
+        name="pdf_reports_files"
+        path="reports/" />
+</paths>

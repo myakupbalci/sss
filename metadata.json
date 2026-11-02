@@ -1,0 +1,6 @@
+{
+  "name": "İnsülin Asistanı",
+  "description": "Akıllı insülin hatırlatıcısı, bazal/bolus doz takibi, vücut enjeksiyon bölgesi rotasyon asistanı ve insülin kalem stok yönetimi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
